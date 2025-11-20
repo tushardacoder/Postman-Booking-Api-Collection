@@ -1,154 +1,178 @@
-📌 Booking API – Postman Automation Collection
+# 📌 Booking API – Postman Automation Collection
 
-This project contains a complete Postman automation suite for testing the Restful Booker API, including CRUD operations, environment variables, dynamic test data generation, and assertion scripts.
+A complete **Postman automation suite** for testing the **Restful Booker API**, covering full CRUD operations, authentication, dynamic data generation, and detailed assertion scripts.  
+This project is ideal for demonstrating **API testing, scripting, and automation skills**.
 
-🚀 Features
-✔ Automated API Test Collection
+---
 
-The collection includes:
+## 🚀 Features
 
-Create Booking
+### ✔ Complete Automated API Test Collection
+This collection includes:
 
-Get All Bookings
+- **Create Booking**
+- **Get All Bookings**
+- **Get Booking by ID**
+- **Update Booking (PUT/PATCH)**
+- **Delete Booking**
+- **Token Generation (Authentication)**
 
-Get Booking by ID
+---
 
-Update Booking
+## ✔ Postman Scripts Included
 
-Delete Booking
+### 🟦 Pre-request Scripts
+Used for:
+- Generating dynamic request data  
+- Setting environment variables  
+- Preparing token/auth requests  
 
-Token Generation for Authorization
+### 🟩 Dynamic Test Data Generation
+Uses Postman's built-in variables:
 
-✔ Postman Scripts Added
+```
+{{$randomFirstName}}
+{{$randomLastName}}
+{{$randomInt}}
+{{$randomBoolean}}
+```
 
-Pre-request scripts
+### 🟧 Test Scripts for Validation
+Covers:
 
-Dynamic data using Postman variables
-({{$randomFirstName}}, {{$randomBoolean}}, {{$randomInt}}, etc.)
+- Response body checks  
+- Status code validation  
+- Variable updates  
+- Data consistency assertions  
+- ID & token extraction  
 
-Test scripts validating:
+---
 
-Response body
+## ✔ Environment Configuration
 
-Status codes
+The environment JSON provides:
 
-Environment variable updates
+| Variable | Description |
+|---------|-------------|
+| `base_url` | Base API URL |
+| `firstname`, `lastname` | Randomly generated data |
+| `totalprice` | Random integer |
+| `depositpaid` | Boolean |
+| `additionalneeds` | String value |
+| `check_in`, `check_out` | Auto-generated dates |
+| `bookingid` | Stored booking ID |
+| `token` | Auth token |
 
-Data consistency
+---
 
-✔ Environment Configuration
+## 📂 Project Structure
 
-The environment JSON contains:
-
-Base URL
-
-Firstname / Lastname
-
-Total price
-
-Deposit paid (boolean)
-
-Additional needs
-
-Check-in & Check-out date values
-
-Booking ID
-
-Token
-
-📂 Project Structure
+```
 📁 Postman-Booking-API-Automation
 │
 ├── 📄 BookingAPIs.postman_collection.json
 ├── 📄 Test_Env.postman_environment.json
 └── 📘 README.md
+```
 
-🧪 How to Use
-1️⃣ Import the Collection
+---
 
-Open Postman → File → Import
-Select:
-✔ BookingAPIs.postman_collection.json
+## 🧪 How to Use
 
-2️⃣ Import the Environment
+### 1️⃣ Import the Collection  
+In Postman:  
+`File → Import`  
+Choose:  
+✔ `BookingAPIs.postman_collection.json`
 
-Go to Environments → Import
-Select:
-✔ Test_Env.postman_environment.json
+### 2️⃣ Import the Environment  
+Go to **Environments → Import**  
+✔ `Test_Env.postman_environment.json`
 
-3️⃣ Set Base URL
-
+### 3️⃣ Set Base URL  
 Example:
 
+```
 https://restful-booker.herokuapp.com
+```
 
-4️⃣ Run the Collection
+### 4️⃣ Run the Collection  
+Using Collection Runner:
 
-Use Collection Runner:
+- Environment: **Test_Env**
+- Click **Run**  
+- All CRUD test cases execute automatically
 
-Environment: Test_Env
+---
 
-Run all test cases
+## 🛠 Technologies Used
 
-🛠 Technologies Used
+- **Postman**
+- **JavaScript** (Pre-request & Test scripts)
+- **RESTful API Testing**
+- **Dynamic Environment Variables**
+- **Moment.js** for date handling
 
-Postman
+---
 
-JavaScript (for test scripts)
+## ✨ Key Testing Logic
 
-RESTful APIs
+### 🔹 Dynamic Data Generation
 
-Environment Variables
-
-Pre-request Scripts
-
-Dynamic JSON Payloads
-
-📥 Download Files (from this repo)
-File	Description
-BookingAPIs.postman_collection.json	Complete API test collection
-Test_Env.postman_environment.json	Environment with dynamic variables
-✨ Highlights of the Testing Logic
-🔹 Dynamic Data Generation
+```javascript
 pm.environment.set("fname", pm.variables.replaceIn("{{$randomFirstName}}"));
 pm.environment.set("lname", pm.variables.replaceIn("{{$randomLastName}}"));
 pm.environment.set("price_product", pm.variables.replaceIn("{{$randomInt}}"));
 pm.environment.set("is_depositpaid", pm.variables.replaceIn("{{$randomBoolean}}"));
+```
 
-🔹 Moment.js date handling
+---
+
+### 🔹 Dynamic Dates (Moment.js)
+
+```javascript
 const checkin_date = require('moment')().format("YYYY-MM-DD");
 const checkout_date = require('moment')().add(4,'d').format("YYYY-MM-DD");
 
 pm.environment.set("check_in", checkin_date);
 pm.environment.set("check_out", checkout_date);
+```
 
-🔹 Response validation
-pm.test("First Name Check", function(){
-    pm.expect(pm.environment.get("fname")).to.eql(responsedata.firstname);
+---
+
+### 🔹 Response Validation
+
+```javascript
+pm.test("First Name Check", function () {
+    pm.expect(pm.environment.get("fname"))
+      .to.eql(responsedata.firstname);
 });
+```
 
-🏁 Final Output
+---
 
-After running:
+## 🏁 Final Output Summary
 
-Booking ID is stored automatically
+After running the collection:
 
-Token is generated and used in Update/Delete
+✔ Booking ID stored automatically  
+✔ Authentication token generated  
+✔ Token reused for **Update** and **Delete**  
+✔ All CRUD operations fully automated  
+✔ Dynamic data ensures fresh test runs  
+✔ Validations ensure consistency  
 
-Data validation runs through Postman test scripts
+---
 
-Complete CRUD flow is automated
+## 💡 Why This Project Is Useful
 
-💡 Why This Project Is Useful
+This repository demonstrates strong knowledge in:
 
-This repository demonstrates:
+- API Automation Testing  
+- Postman scripting (JS-based)  
+- Environment & collection management  
+- Working with dynamic variables  
+- CRUD workflow automation  
+- Token-based authentication testing  
 
-API automation testing knowledge
-
-Working with dynamic environment variables
-
-Writing test scripts in Postman
-
-Handling authentication tokens
-
-Complete CRUD workflow automation
+A great addition to any **QA / SDET portfolio** or **API testing showcase**.
