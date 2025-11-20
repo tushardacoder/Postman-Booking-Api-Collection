@@ -175,4 +175,3 @@ This repository demonstrates strong knowledge in:
 - CRUD workflow automation  
 - Token-based authentication testing  
 
-A great addition to any **QA / SDET portfolio** or **API testing showcase**.
